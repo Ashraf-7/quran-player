@@ -1,0 +1,209 @@
+/*********************************/
+/* GLOBAL VARIABLES */
+/*********************************/
+:root {
+  --clr-primary: #404040;
+  --clr-tint: #797979;
+  --clr-shade: #333333;
+  --clr-gray: #555;
+  --clr-dark-gray: #333;
+
+  --main-transition: 350ms;
+
+  --shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+
+  --rounded-sm: 0.5rem;
+  --rounded-lg: 5rem;
+
+  --clr-nav: rgba(255, 255, 255, 0.97);
+}
+
+body {
+  background: url("../imgs/bg.png") center center/cover no-repeat fixed;
+  direction: rtl;
+}
+
+/************** PLAYER ***********/
+
+.player {
+  background: linear-gradient(to right, #000, #434343);
+  position: sticky;
+  top: 0;
+  padding: 2rem;
+  margin-block: 1rem;
+  border-radius: var(--rounded-sm);
+  z-index: 1;
+}
+
+.ayah {
+  padding-block: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+}
+
+.quran-player {
+  width: 100%;
+  height: 4rem;
+  margin-block: 1.5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons .icon {
+  width: 6rem;
+  height: 6rem;
+  background-color: #fff;
+  color: #23162f;
+  font-size: 2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.surahs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.surahs > div {
+  font-weight: bold;
+  color: var(--clr-dark-gray);
+  background-color: #fff;
+  box-shadow: var(--shadow);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  border-radius: 0 var(--rounded-sm) var(--rounded-sm) 0;
+  width: calc(100% - 9rem);
+  transition: var(--main-transition) ease;
+  position: relative;
+  counter-increment: surah-counter;
+}
+
+.surahs > div:before {
+  content: "◀";
+  position: absolute;
+  top: 50%;
+  left: -1.4rem;
+  transform: translateY(-50%);
+  color: var(--clr-dark-gray);
+}
+
+.surahs > div:after {
+  content: counter(surah-counter);
+  position: absolute;
+  top: 50%;
+  left: -9rem;
+  transform: translateY(-50%);
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  display: grid;
+  place-items: center;
+  background-color: inherit;
+  transition: inherit;
+  box-shadow: inherit;
+}
+
+.surahs > div:hover,
+.surahs > div:hover::after {
+  background: linear-gradient(to bottom, var(--clr-dark-gray), var(--clr-gray));
+  color: #fff;
+}
+
+.surahs p.revelation {
+  color: #009688;
+  font-size: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.buttons .disabled {
+  background-color: #777;
+  color: #444;
+  pointer-events: none;
+}
+
+.tafsir-container {
+  max-width: 50%;
+  width: 40%;
+  height: 100%;
+  background-color: #fff;
+  color: var(--clr-dark-gray);
+  position: fixed;
+  top: 0;
+  right: -40%;
+  /* overflow-x: hidden; */
+  /* overflow-y: scroll; */
+  transition: right var(--main-transition) ease-out;
+  z-index: 2;
+}
+
+.tafsir-container.open {
+  right: 0;
+}
+
+.tafsir-icon {
+  font-size: 2rem;
+  position: absolute;
+  top: 10%;
+  left: -4rem;
+  width: 4rem;
+  height: 4rem;
+  background-color: #fff;
+  color: var(--clr-primary);
+  padding: 1rem;
+  border-radius: var(--rounded-sm) 0 0 var(--rounded-sm);
+  cursor: pointer;
+  transition: color var(--main-transition);
+}
+
+.tafsir-icon:hover {
+  color: #009688;
+}
+
+.tafsir-icon:hover::before {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: -2.6rem;
+  transform: translateY(-50%);
+  font-size: 3.5rem;
+  color: var(--clr-tint);
+}
+
+.tafsir-icon:hover::after {
+  content: "عرض التفسير";
+  position: absolute;
+  top: 50%;
+  left: -11.2rem;
+  transform: translateY(-50%);
+  background-color: var(--clr-tint);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.78rem 1.4rem;
+  border-radius: var(--rounded-sm);
+  box-shadow: var(--shadow);
+}
+
+.coming-soon {
+  font-size: 3.2rem;
+  line-height: 1.25;
+  text-align: center;
+  margin-top: 3.2rem;
+  margin-inline: auto;
+  font-weight: 600;
+  background-color: var(--clr-primary);
+  color: #fff;
+  width: 50%;
+  padding: 1.2rem;
+  transform: skewX(-20deg);
+}

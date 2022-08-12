@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quran Player</title>
+    <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="player">
+        <div class="ayah">اضغط على السورة لللإستماع إليها</div>
+        <audio
+          src=""
+          id="quranPlayer"
+          class="quran-player"
+          controls
+          autoplay
+        ></audio>
+        <div class="buttons">
+          <div class="icon next"><i class="fa-solid fa-forward"></i></div>
+          <div class="icon play"><i class="fa-solid fa-play"></i></div>
+          <div class="icon prev"><i class="fa-solid fa-backward"></i></div>
+        </div>
+      </section>
+      <section class="surahs" id="surahs"></section>
+      <section class="tafsir-container" id="tafsirContainer">
+        <div class="tafsir-icon" id="tafsirIcon">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
+        <div class="coming-soon">التفسير قريبا ان شاء الله...</div>
+      </section>
+    </main>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script
+      src="https://kit.fontawesome.com/3c51e0a0f5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
