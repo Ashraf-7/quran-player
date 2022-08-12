@@ -13,7 +13,7 @@ getSurahs()
 
 function getSurahs() {
   // fetch("https://api.quran.sutanlab.id/surah")
-  fetch("http://api.alquran.cloud/v1/surah")
+  fetch("https://api.alquran.cloud/v1/surah")
     .then((response) => response.json())
     .then((data) => {
       // console.log(data)
@@ -45,7 +45,7 @@ function getSurahs() {
 
       allSurahs.forEach((surah, index) => {
         surah.addEventListener("click", () => {
-          fetch(`http://api.alquran.cloud/v1/surah/${index + 1}/ar.alafasy`)
+          fetch(`https://api.alquran.cloud/v1/surah/${index + 1}/ar.alafasy`)
             .then((response) => response.json())
             .then((data) => {
               let ayahs = data.data.ayahs
