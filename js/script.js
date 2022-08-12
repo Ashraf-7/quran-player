@@ -9,40 +9,51 @@ let ayah = getEl('.ayah')
 let next = getEl('.next')
 let prev = getEl('.prev')
 let play = getEl('.play')
-getSurahs();
+getSurahs()
 
 function getSurahs() {
-  fetch("https://api.quran.sutanlab.id/surah")
+  // fetch("https://api.quran.sutanlab.id/surah")
+  fetch("http://api.alquran.cloud/v1/surah")
     .then((response) => response.json())
-    .then(data => {
+    .then((data) => {
+      // console.log(data)
       for (let surah in data.data) {
-        surahsContainer.innerHTML += `<div>
-        <p>${data.data[surah].name.long}</p>
-        <p>${data.data[surah].name.transliteration.en}</p>
-          <p class="revelation"n>${data.data[surah].revelation.arab} | ${data.data[surah].revelation.en}</p>
-          </div>`;
-          
-          //   tafsirContainer.innerHTML += `<div>
-          //   <p>${data.data[surah].name.long}</p>
+        surahsContainer.innerHTML += `
+        <div>
+            <p>${data.data[surah].name}</p>
+            <p>${data.data[surah].englishName}</p>
+            <p class="revelation"n>${translate(data.data[surah].revelationType)}
+              | ${data.data[surah].revelationType}</p>
+        </div>`;
+
+        //   tafsirContainer.innerHTML += `<div>
+        //   <p>${data.data[surah].name.long}</p>
         //   <p>${data.data[surah].name.transliteration.en}</p>
         // </div>`;
       }
+
+      function translate(revelationType) {
+        if (revelationType === "Meccan") revelationType = "مكية";
+        if (revelationType === "Medinan") revelationType = "مدنية";
+        return revelationType;
+      }
+
       let allSurahs = getEl("#surahs div", 1);
       let ayahsAudio = [];
       let ayahsText = [];
       let ayahsTafsir = [];
-      
+
       allSurahs.forEach((surah, index) => {
         surah.addEventListener("click", () => {
-          fetch(`https://api.quran.sutanlab.id/surah/${index + 1}`)
+          fetch(`http://api.alquran.cloud/v1/surah/${index + 1}/ar.alafasy`)
             .then((response) => response.json())
             .then((data) => {
-              let verses = data.data.verses;
+              let ayahs = data.data.ayahs
               ayahsAudio = [];
               ayahsText = [];
-              verses.forEach((verse) => {
-                ayahsAudio.push(verse.audio.primary);
-                ayahsText.push(verse.text.arab);
+              ayahs.forEach((verse) => {
+                ayahsAudio.push(verse.audio);
+                ayahsText.push(verse.text);
                 // ayahsTafsir.push(verse.tafsir.id.short);
               });
 
